@@ -33,15 +33,19 @@
         button:hover {
             background-color: #c0392b;
         }
-        #resultado {
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .dice-animation {
-            font-size: 30px;
+        #dice {
+            font-size: 50px;
             margin: 20px 0;
-            height: 30px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            border-radius: 10px;
             animation: roll 0.5s linear infinite;
         }
         @keyframes roll {
@@ -67,23 +71,21 @@
             <option value="100">D100</option>
         </select>
         <button onclick="rolarDado()">Rolar</button>
-        <div id="dice" class="dice-animation">🎲</div>
-        <p id="resultado"></p>
+        <div id="dice">🎲</div>
     </div>
 
     <script>
         function rolarDado() {
             let lados = document.getElementById("dado").value;
             let diceElement = document.getElementById("dice");
-            let resultadoElement = document.getElementById("resultado");
             
             // Adiciona animação
             diceElement.style.animation = "roll 0.5s linear infinite";
-            resultadoElement.innerText = "Rolando...";
+            diceElement.innerText = "🎲";
             
             setTimeout(() => {
                 let resultado = Math.floor(Math.random() * lados) + 1;
-                resultadoElement.innerText = "Resultado: " + resultado;
+                diceElement.innerText = resultado;
                 diceElement.style.animation = "none";
             }, 1000);
         }
