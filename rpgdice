@@ -20,20 +20,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
-        button {
-            margin-top: 10px;
-            padding: 10px;
-            border: none;
-            background-color: #e74c3c;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #c0392b;
-        }
-        #dice {
+        .dice {
             font-size: 50px;
             margin: 20px auto;
             height: 50px;
@@ -47,6 +34,7 @@
             border-radius: 10px;
             text-align: center;
             animation: roll 0.5s linear infinite;
+            cursor: pointer;
         }
         @keyframes roll {
             0% { transform: rotate(0deg); }
@@ -60,8 +48,8 @@
 <body>
     <div class="container">
         <h2>Simulador de Dados de RPG</h2>
-        <label for="dado">Escolha um dado:</label>
-        <select id="dado">
+        <div class="dice" id="dice" onclick="rolarDado()">🎲</div>
+        <select id="dado" style="display: none;">
             <option value="4">D4</option>
             <option value="6">D6</option>
             <option value="8">D8</option>
@@ -70,19 +58,18 @@
             <option value="20">D20</option>
             <option value="100">D100</option>
         </select>
-        <button onclick="rolarDado()">Rolar</button>
-        <div id="dice">🎲</div>
     </div>
 
     <script>
         function rolarDado() {
-            let lados = document.getElementById("dado").value;
+            let selectDado = document.getElementById("dado");
+            let lados = selectDado.value;
             let diceElement = document.getElementById("dice");
-            
+
             // Adiciona animação
             diceElement.style.animation = "roll 0.5s linear infinite";
             diceElement.innerText = "🎲";
-            
+
             setTimeout(() => {
                 let resultado = Math.floor(Math.random() * lados) + 1;
                 diceElement.innerText = resultado;
