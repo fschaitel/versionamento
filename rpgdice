@@ -20,11 +20,17 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
+        select {
+            margin-top: 10px;
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
         .dice {
             font-size: 50px;
             margin: 20px auto;
-            height: 50px;
-            width: 50px;
+            height: 70px;
+            width: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -33,8 +39,11 @@
             font-weight: bold;
             border-radius: 10px;
             text-align: center;
-            animation: roll 0.5s linear infinite;
             cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .dice:active {
+            transform: scale(1.1);
         }
         @keyframes roll {
             0% { transform: rotate(0deg); }
@@ -48,22 +57,22 @@
 <body>
     <div class="container">
         <h2>Simulador de Dados de RPG</h2>
-        <div class="dice" id="dice" onclick="rolarDado()">🎲</div>
-        <select id="dado" style="display: none;">
+        <label for="dado">Escolha um dado:</label>
+        <select id="dado">
             <option value="4">D4</option>
-            <option value="6">D6</option>
+            <option value="6" selected>D6</option>
             <option value="8">D8</option>
             <option value="10">D10</option>
             <option value="12">D12</option>
             <option value="20">D20</option>
             <option value="100">D100</option>
         </select>
+        <div class="dice" id="dice" onclick="rolarDado()">🎲</div>
     </div>
 
     <script>
         function rolarDado() {
-            let selectDado = document.getElementById("dado");
-            let lados = selectDado.value;
+            let lados = document.getElementById("dado").value;
             let diceElement = document.getElementById("dice");
 
             // Adiciona animação
@@ -79,3 +88,5 @@
     </script>
 </body>
 </html>
+
+
